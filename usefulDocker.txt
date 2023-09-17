@@ -1,0 +1,4 @@
+docker run -p 5000:5000 sg-backend - runs the server in terminal
+docker run -d -p 5000:5000 sg-backend - runs the server in background, aka detached mode
+docker login - used to access images and pull and push etc
+docker logs <container_name> - shows the logs or outputs of the running container - add a --follow tag to continuosly get the logs
