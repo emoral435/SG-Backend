@@ -1,13 +1,13 @@
+// This is all the imports from our dependencies, including Express, dotenv for development, and our client that connects to AWS RDS
 import express from 'express';
 import path from 'path';
-import dotenv from 'dotenv';
-const port: string | number = process.env.PORT || 5000;
-dotenv.config()
+const dotenv = require("dotenv").config();
 import client from './config/db'
+const { errorHandler } = require("./middleware/errorMiddleware");
 
-// this gets the configurations that we have in our env file
 
-// this is where we should connect to our database
+const port: string | number = process.env.PORT || 5000;
+// connects to our AWS RBS postgres database
 client.connect()
 
 // initialize express framework
@@ -16,6 +16,8 @@ app.use(express.json()); // we can now parse incoming requests with JSON payload
 app.use(express.urlencoded({ extended: false })); // allows for a JSON-like experience with URL-encoded objects, so it keeps the complexity of the data we are dealing with lower
 
 // initialize where our RESTFUL endpoints are going to be located at, and what they should respond given a request
+app.use("api/users", )
+
 app.post('/users', (req, res) => {
     if (req.query.username && req.query.email && req.query.password) {
         console.log('Request received', new Date());
@@ -39,7 +41,7 @@ app.get('/users', (req, res) => {
 })
 
 // use our error handler middleware
-
+app.use(errorHandler)
 
 // start our server listening on to a port
-app.listen(port, () => console.log(`Listening on port ${port} hahahaha`));
+app.listen(port, () => console.log(`Listening on port ${port}`));
