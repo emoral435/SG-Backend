@@ -2,10 +2,13 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 const port: string | number = process.env.PORT || 5000;
+import connectDB from './config/db'
 
+// this gets the configurations that we have in our env file
+dotenv.config()
 
 // this is where we should connect to our database
-// connectDB()
+const con = connectDB()
 
 // initialize express framework
 var app = express();
@@ -13,6 +16,7 @@ app.use(express.json()); // we can now parse incoming requests with JSON payload
 app.use(express.urlencoded({ extended: false })); // allows for a JSON-like experience with URL-encoded objects, so it keeps the complexity of the data we are dealing with lower
 
 // initialize where our RESTFUL endpoints are going to be located at, and what they should respond given a request
+
 
 // use our error handler middleware
 
