@@ -3,7 +3,7 @@ import express from 'express';
 import path from 'path';
 const dotenv = require("dotenv").config();
 import client from './config/db'
-const { errorHandler } = require("./middleware/errorMiddleware");
+// const { errorHandler } = require("./middleware/errorMiddleware");
 
 
 const port: string | number = process.env.PORT || 5000;
@@ -41,7 +41,7 @@ app.get('/users', (req, res) => {
 })
 
 // use our error handler middleware
-app.use(errorHandler)
+// app.use(errorHandler)
 
 // start our server listening on to a port
 app.listen(port, () => console.log(`Listening on port ${port}`));
