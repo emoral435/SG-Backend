@@ -3,7 +3,7 @@ import express from 'express';
 import path from 'path';
 const dotenv = require("dotenv").config();
 import client from './config/db'
-// const { errorHandler } = require("./middleware/errorMiddleware");
+const { errorHandler } = require("./middleware/errorMiddleware");
 
 
 const port: string | number = process.env.PORT || 5000;
@@ -16,7 +16,7 @@ app.use(express.json()); // we can now parse incoming requests with JSON payload
 app.use(express.urlencoded({ extended: false })); // allows for a JSON-like experience with URL-encoded objects, so it keeps the complexity of the data we are dealing with lower
 
 // initialize where our RESTFUL endpoints are going to be located at, and what they should respond given a request
-app.use("api/users", )
+// app.use("api/users", )
 
 app.post('/users', (req, res) => {
     if (req.query.username && req.query.email && req.query.password) {
@@ -41,7 +41,7 @@ app.get('/users', (req, res) => {
 })
 
 // use our error handler middleware
-// app.use(errorHandler)
+app.use(errorHandler)
 
 // start our server listening on to a port
 app.listen(port, () => console.log(`Listening on port ${port}`));
